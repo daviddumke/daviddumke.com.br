@@ -19,7 +19,7 @@ function loadJSON(path, success, error)
 
 
 
-loadJSON('https://roberval.chaordicsystems.com/challenge/challenge.json?callback=90',
+loadJSON('http://roberval.chaordicsystems.com/challenge/challenge.json?callback=90',
          function(data) { console.log(data); },
          function(xhr) { console.error(xhr); }
 );
