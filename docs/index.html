@@ -11,14 +11,22 @@
     <meta name="robots" content="noindex, nofollow">
     <title>David Dumke | Vitrine de recomendação por produto</title>
     <link href="assets/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<!-- 
 		Afim de obter responsividade e um layout mais claro e padronizado, 
-		optei pela utilização de Bootstrap, o código gerado via JS segue a nomenclatura de classes dessa biblioteca.
+		optei pela utilização de Bootstrap, o código gerado via JS segue a nomenclatura de classes dessa biblioteca mesclado com o css do slider.
+
+		O slider optei por não utilizar JS, mas somente CSS e HTML.
+		Este código traz o benefício de um carregamento mais rápido, porém tem uma limitação no número de produtos definido no css (10 sliders, ou seja, 30 produtos).
+
+		Como o JSON trazia apenas 10 produtos, e acredito que um número maior que este não seja adequado em termos de usabilidade (mesmo sabendo que a Chaordic permite), optei por esta forma.
+		De qualquer forma o JS consegue lidar dinamicamente com um número aleatório de produtos (ou deveria, hehe), desde que menor do que 30.
 	-->
 	<div class="container" id="vitrine">	
 	</div>	
+
 <script src="assets/js/lib/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/js/function.js" type="text/javascript"></script>
 </body>

@@ -54,6 +54,52 @@ function getInstallmentValue(installment, price)
  */
 
 
+ function createControlsSlider(produtos)
+ {
+ 	var productsPage = 3;
+ 	var slides = Math.ceil(produtos/productsPage);
+ 	checked = 'checked="checked"';
+ 	var htmlControls = '';
+ 	for (i = 1; i <= slides; i++) {
+ 		if (i > 1) {
+ 			checked = '';  			
+ 		}
+	    htmlControls += '<input '+checked+' class="carousel__activator" id="carousel-slide-activator-'+i+'" name="carousel" type="radio">';
+	};
+	for (i = 1; i <= slides; i++) {		
+		var anterior = parseInt(i) - parseInt(1);
+		var proxima = parseInt(i) + parseInt(1);
+		if (i > 1 && i < slides) {			  
+			htmlControls += `<div class='carousel__controls'>
+						      <label class='carousel__control carousel__control--backward' for='carousel-slide-activator-${anterior}'>
+						        👈
+						      </label>
+						      <label class='carousel__control carousel__control--forward' for='carousel-slide-activator-${proxima}'>
+						        👉
+						      </label>
+						    </div>`;
+		} else {
+			if (i == 1) {
+	 			htmlControls += `<div class='carousel__controls'>
+							      <label class='carousel__control carousel__control--forward' for='carousel-slide-activator-2'>
+							        👉
+							      </label>
+							    </div>`;  			
+	 		}
+	 		if (i == slides) {
+	 			htmlControls += `<div class='carousel__controls'>
+							      <label class='carousel__control carousel__control--backward' for='carousel-slide-activator-${anterior}'>
+							        👈
+							      </label>
+							    </div>`; 
+	 		}
+		}
+	};	
+
+	return htmlControls;
+ }
+
+
 /* INÍCIO DA FUNÇÃO DE CALLBACK DA CHAORDIC
  * Motivado pelo uso do JSONP abaixo temos a função que trata o retorno do JSON
  */
@@ -98,7 +144,7 @@ function X(data)
 	// Html padrão dos Produtos Recomendados:
 	const htmlProductRecommendation = `
 	${productRecommendation.map(product => `
-	<div class="col-lg-4">
+	<div class="carousel__item carousel__item--mobile-in-3 carousel__item--tablet-in-3 carousel__item--desktop-in-3">
 		<a href="${product.detailUrl}">		
 			<img class="img-responsive" src="${product.imageName}" />
 			<p class="product-name">${product.name.slice(0, 85)} ...</p>
@@ -118,28 +164,34 @@ function X(data)
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-4">
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="row">
 				<div class="col-lg-12">
 					<h3>${productReferenceTitle}</h3>
 				</div>
-			</div>
+			</div>	
 			<div class="row">
-				<div class="col-lg-12">
-					
+				<div class="col-lg-12">					
 					${htmlProductReference}
 					</a>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-9 col-md-9 col-sm-8">
+		<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 recommendation-list-container">
 			<div class="row">
 				<div class="col-lg-12">
 					<h3>${productRecommendationTitle}</h3>
 				</div>
 			</div>
-			<div class="row">
-					${htmlProductRecommendation}
+			<div class='demo-container'>
+		  		<div class='carousel'>
+					${createControlsSlider(data.data.widget.size)} 
+					<div class="carousel__screen">
+						<div class="carousel__track">					
+							${htmlProductRecommendation}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
