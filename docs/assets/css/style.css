@@ -284,6 +284,10 @@ a:hover {
   width: 20%;
 }
 
+.demo-container {
+  overflow: hidden;
+}
+
 .demo-content {
   color: #fff;
   display: flex;

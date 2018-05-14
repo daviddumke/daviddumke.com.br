@@ -201,6 +201,6 @@ function X(data)
 
 // Código responsável pela leitura do JSONP
 var script = document.createElement('script');
-script.src = 'http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X'
+script.src = 'https://cors-anywhere.herokuapp.com/http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X'
 
 document.getElementsByTagName('head')[0].appendChild(script);
