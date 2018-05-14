@@ -1,3 +1,6 @@
+/* BOM DIA
+ * Este código foi desenvolvido por David Renato Dumke.
+ */
 
 html {
 	color: #222;
@@ -74,7 +77,7 @@ a:hover {
 
 /* Css do slider */
 .carousel {
-  min-width: 840px;
+  min-width: 900px;
   max-width: 1236px;
   margin-left: auto;
   margin-right: auto;

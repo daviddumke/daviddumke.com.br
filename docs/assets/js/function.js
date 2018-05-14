@@ -1,5 +1,6 @@
 /* BOM DIA
  * Este código foi desenvolvido por David Renato Dumke.
+ *
  * As operações são simples, baseadas nas condições gerais do teste.
  * Algumas mudanças foram feitas, porém documentadas.
  * Não foi utilizado nenhum conceito de POO ou nada similar, por motivo de tempo.
@@ -29,14 +30,19 @@ Math.ceil = (function() {
 
 
 /* Função que retorna o parcelamento (número de parcelas) baseado no preço, e 
- * levando em consideração um valor mínimo de parcela.
+ * levando em consideração um valor mínimo de parcela(49,99) e o maximo de parcelamento(12x).
  */
 function getInstallment(price)
 {
 	var priceInFloat = price.replace("R$ ", "").replace(",", ".");
 	// Valor minimo da parcela
 	valorMinimo = 49.99;
-	return Math.floor(priceInFloat / valorMinimo);
+	defaultInstallment = 12;
+	installment = Math.floor(priceInFloat / valorMinimo);
+	if (installment > defaultInstallment) {
+		installment = defaultInstallment;
+	}
+	return installment;
 }
 
 /* Função que retorna o valor do parcelamento baseado no preço e 
@@ -50,10 +56,12 @@ function getInstallmentValue(installment, price)
 
 /* FIM DAS FUNÇÕES DE PARCELAMENTO
  * Após usar estas funções será entregue às vitrines preços parcelados, 
- * sendo que NUNCA será mostrado uma parcela menor que R$ 49,99
+ * sendo que NUNCA será mostrado uma parcela menor que R$ 49,99 e nunca um parcelamento maior que 12x.
  */
 
-
+/* INÍCIO DAS FUNCÕES DE SLIDER
+ * Estas funções tem como objetivo auxiliar na geração do slider da vitrine.
+ */
  function createControlsSlider(produtos)
  {
  	var productsPage = 3;
@@ -201,6 +209,12 @@ function X(data)
 
 // Código responsável pela leitura do JSONP
 var script = document.createElement('script');
+
+/* Para ficar visivel no GitPages eu baixei o JSON e puxei diretamente do servidor próprio.
+ * Para voltar o serviço remoto padrão basta inverter as linhas comentadas abaixo
+ * entretanto como o seviço remoto nao dispoe de versão HTTPS, não será possível visualizar os dados.
+ */
 script.src = 'includes/challenge.json?callback=X'
+//script.src = 'http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X'
 
 document.getElementsByTagName('head')[0].appendChild(script);
