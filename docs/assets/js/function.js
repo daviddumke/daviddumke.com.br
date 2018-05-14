@@ -152,7 +152,7 @@ function X(data)
 	// Html padrão dos Produtos Recomendados:
 	const htmlProductRecommendation = `
 	${productRecommendation.map(product => `
-	<div class="product-item carousel__item carousel__item--mobile-in-3 carousel__item--tablet-in-3 carousel__item--desktop-in-3">
+	<div class="product-item carousel__item carousel__item--mobile-in-2 carousel__item--tablet-in-2 carousel__item--desktop-in-3">
 		<a href="${product.detailUrl}" class="text-center">		
 			<img class="img-responsive" src="${product.imageName}" />
 			<p class="product-name text-left">${product.name.slice(0, 80)} ...</p>
