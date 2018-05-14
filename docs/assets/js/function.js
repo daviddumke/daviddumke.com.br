@@ -128,14 +128,14 @@ function X(data)
 
 	// Html padrão do Produto Referência:
 	const htmlProductReference = `
-	<div class="col-lg-12">
-		<a href="${productReference.detailUrl}">
+	<div class="col-lg-12 product-item">
+		<a href="${productReference.detailUrl}" class="text-center">
 			<img class="img-responsive" src="${productReference.imageName}" />
-			<p class="product-name"> ${productReference.name.slice(0, 85)} ...</p>
-			<p class="old-price"> De: <span class="old-price-value">${productReference.oldPrice}</span></p>
-			<p class="price"> Por: <span class="price-value">${productReference.price}</span></p>
-			<p class="installment"> ou <span class="installment-parcel">${getInstallment(productReference.price)}</span>x de R$ <span class="installment-value">${getInstallmentValue(getInstallment(productReference.price), productReference.price)}</span></p>
-			<p class="no-interest"> sem juros</p>
+			<p class="product-name text-left"> ${productReference.name.slice(0, 80)} ...</p>
+			${productReference.oldPrice ? `<p class="old-price text-left"><del> De: <span class="old-price-value">${productReference.oldPrice}</span></del></p>` : ''}
+			<p class="price text-left"> Por: <span class="price-value">${productReference.price}</span></p>
+			<p class="installment text-left"> ou <span class="installment-parcel">${getInstallment(productReference.price)}</span>x de R$ <span class="installment-value">${getInstallmentValue(getInstallment(productReference.price), productReference.price)}</span></p>
+			<p class="no-interest text-left"> sem juros</p>
 		</a>
 	</div>
 	`;
@@ -144,14 +144,14 @@ function X(data)
 	// Html padrão dos Produtos Recomendados:
 	const htmlProductRecommendation = `
 	${productRecommendation.map(product => `
-	<div class="carousel__item carousel__item--mobile-in-3 carousel__item--tablet-in-3 carousel__item--desktop-in-3">
-		<a href="${product.detailUrl}">		
+	<div class="product-item carousel__item carousel__item--mobile-in-3 carousel__item--tablet-in-3 carousel__item--desktop-in-3">
+		<a href="${product.detailUrl}" class="text-center">		
 			<img class="img-responsive" src="${product.imageName}" />
-			<p class="product-name">${product.name.slice(0, 85)} ...</p>
-			<p class="old-price"> De: <span class="old-price-value">${product.oldPrice}</span></p>
-			<p class="price"> Por: <span class="price-value">${product.price}</span></p>
-			<p class="installment"> ou <span class="installment-parcel">${getInstallment(product.price)}</span>x de R$ <span class="installment-value">${getInstallmentValue(getInstallment(product.price), product.price)}</span></p>
-			<p class="no-interest"> sem juros</p>
+			<p class="product-name text-left">${product.name.slice(0, 80)} ...</p>
+			${product.oldPrice ? `<p class="old-price text-left"><del> De: <span class="old-price-value">${product.oldPrice}</span></del></p>` : ''}
+			<p class="price text-left"> Por: <span class="price-value">${product.price}</span></p>
+			<p class="installment text-left"> ou <span class="installment-parcel">${getInstallment(product.price)}</span>x de R$ <span class="installment-value">${getInstallmentValue(getInstallment(product.price), product.price)}</span></p>
+			<p class="no-interest text-left"> sem juros</p>
 		</a>
 	</div>`).join('')} `;
 
@@ -160,30 +160,27 @@ function X(data)
 	const htmlVitrine = `
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="text-center">${vitrineTitle}</h1>
+			<h1 class="text-center text-uppercase font-weight-bold">${vitrineTitle}</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-			<div class="row">
+			<div class="row title">
 				<div class="col-lg-12">
-					<h3>${productReferenceTitle}</h3>
+					<h4 class="font-weight-bold">${productReferenceTitle}</h4>
 				</div>
 			</div>	
-			<div class="row">
-				<div class="col-lg-12">					
-					${htmlProductReference}
-					</a>
-				</div>
+			<div class="row">				
+				${htmlProductReference}
 			</div>
 		</div>
 		<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 recommendation-list-container">
-			<div class="row">
+			<div class="row title">
 				<div class="col-lg-12">
-					<h3>${productRecommendationTitle}</h3>
+					<h4 class="font-weight-bold">${productRecommendationTitle}</h4>
 				</div>
 			</div>
-			<div class='demo-container'>
+			<div class='row demo-container'>
 		  		<div class='carousel'>
 					${createControlsSlider(data.data.widget.size)} 
 					<div class="carousel__screen">
